@@ -1,5 +1,5 @@
-# laravel-video-chat-demo
-Laravel Video Chat using Socket.IO and WebRTC ( Demo )
+# laravel-chat
+Laravel Chat using Socket.IO and WebRTC ( Demo )
 
 Install the JavaScript dependencies:
 
