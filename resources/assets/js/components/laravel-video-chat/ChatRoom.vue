@@ -18,7 +18,7 @@
                             </span>
                                 <div class="chat-body clearfix">
                                     <div class="header">
-                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span><timeago :since="message.created_at" :auto-update="10"></timeago></small>
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span><timeago :since="currentDateZone(message.created_at)" :auto-update="10"></timeago></small>
                                         <strong v-bind:class="{ 'pull-right' : check(message.sender.id) , 'pull-left' : !check(message.sender.id)}" class="primary-font">
                                             {{ message.sender.name }}
                                         </strong>
@@ -193,6 +193,13 @@
                             console.log('received unknown message type ' + data.type + ' from ' + data.from);
                         }
                     });
+            },
+            currentDateZone(date){
+                if(date){
+                    var d = new Date(date);
+                    return  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+                }
+                return new Date();
             },
         },
         beforeMount () {
