@@ -1,10 +1,10 @@
 {
-	"authHost": "https://videochat.loc/",
+	"authHost": "https://videochat.loc",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
-			"appId": "401bbd7899d977a0",
-			"key": "bc7918329991f0c9e0d3bf7416328440"
+			"appId": "a7d3678e664c7e1d",
+			"key": "635ffecda579bc5c4ce8f4497ec02e01"
 		}
 	],
 	"database": "redis",
@@ -30,7 +30,7 @@
 	},
 	"apiOriginAllow": {
 		"allowCors": true,
-		"allowOrigin": "https://videochat.loc/",
+		"allowOrigin": "https://videochat.loc",
 		"allowMethods": "GET, POST",
 		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
 	}

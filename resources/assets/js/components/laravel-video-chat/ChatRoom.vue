@@ -266,11 +266,13 @@
 
     function onRemoteAnswer(answer){
         trace('onRemoteAnswer : ' + answer);
+        answer.sdp +='\n';
         pc.setRemoteDescription(answer).then(function(){onSetRemoteSuccess(pc)}, onSetSessionDescriptionError);
     }
 
     function onSignalOffer(offer){
         Cookies.set('offer', offer);
+        localStorage.setItem('offer',JSON.stringify(offer));
         $('#incomingVideoCallModal').modal('show');
     }
 
@@ -309,10 +311,17 @@
             alert('getUserMedia() error: ' + e.name);
         });
     }
-
+var k=0;
     function call() {
         conversationID = Cookies.get('conversationID');
-
+        if(k === 0 )
+        {
+            k++;
+        }
+        else
+        {
+            return;
+        }
         trace('Starting call');
         startTime = window.performance.now();
         var videoTracks = localStream.getVideoTracks();
@@ -363,6 +372,10 @@
     function onAnswer(){
         var remoteOffer = Cookies.getJSON('offer');
 
+        if(!remoteOffer){
+            remoteOffer = JSON.parse(localStorage.getItem('offer'));
+        }
+        remoteOffer.sdp += "\n";
         pc.setRemoteDescription(remoteOffer).then(function(){onSetRemoteSuccess(pc)}, onSetSessionDescriptionError);
 
         pc.createAnswer().then(
